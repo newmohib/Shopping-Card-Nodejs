@@ -1,104 +1,18 @@
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/5/5e/Gothiccover.png" class="card-img-top img-responsive"
-        alt="Picture">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text description">SLorem Ipsum is simply dummy text of the printing and typesetting industry . LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-          of type and scrambled it to make a type specimen book</p>
 
+<div class="row mt-2">
+{{# each products ~}}
+  <div class="col-sm-6 col-md-4 mb-2">
+    <div class="card">
+      <img src="{{imagePath}}" class="card-img-top img-responsive" alt="Picture">
+      <div class="card-body">
+        <h5 class="card-title">{{title}}</h5>
+        <p class="card-text description">{{description}}</p>
         <div class=" clearfix">
-          <div class="btn btn-secondary float-left">$12</div>
-          <a href="#" class="btn btn-success float-right"> right</a>
+          <div class="btn btn-secondary float-left">{{price}}</div>
+          <a href="#" class="btn btn-success float-right">Add to Cart</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/5/5e/Gothiccover.png" class="card-img-top img-responsive"
-        alt="Picture">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text description">SLorem Ipsum is simply dummy text of the printing and typesetting industry . LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-          of type and scrambled it to make a type specimen book</p>
-
-        <div class=" clearfix">
-          <div class="btn btn-secondary float-left">$12</div>
-          <a href="#" class="btn btn-success float-right"> right</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/5/5e/Gothiccover.png" class="card-img-top img-responsive"
-        alt="Picture">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text description">SLorem Ipsum is simply dummy text of the printing and typesetting industry . LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-          of type and scrambled it to make a type specimen book</p>
-
-        <div class=" clearfix">
-          <div class="btn btn-secondary float-left">$12</div>
-          <a href="#" class="btn btn-success float-right"> right</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<div class="row">
-  <div class="col-sm-6 col-md-4">
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/5/5e/Gothiccover.png" class="card-img-top img-responsive"
-        alt="Picture">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text description">SLorem Ipsum is simply dummy text of the printing and typesetting industry . LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-          of type and scrambled it to make a type specimen book</p>
-
-        <div class=" clearfix">
-          <div class="btn btn-secondary float-left">$12</div>
-          <a href="#" class="btn btn-success float-right"> right</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/5/5e/Gothiccover.png" class="card-img-top img-responsive"
-        alt="Picture">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text description">SLorem Ipsum is simply dummy text of the printing and typesetting industry . LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-          of type and scrambled it to make a type specimen book</p>
-
-        <div class=" clearfix">
-          <div class="btn btn-secondary float-left">$12</div>
-          <a href="#" class="btn btn-success float-right"> right</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/5/5e/Gothiccover.png" class="card-img-top img-responsive"
-        alt="Picture">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text description">SLorem Ipsum is simply dummy text of the printing and typesetting industry . LoremIpsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-          of type and scrambled it to make a type specimen book</p>
-
-        <div class=" clearfix">
-          <div class="btn btn-secondary float-left">$12</div>
-          <a href="#" class="btn btn-success float-right"> right</a>
-        </div>
-      </div>
-    </div>
-  </div>
+{{/each}}
 </div>
