@@ -16,6 +16,8 @@ var app = express();
 mongoose.connect('mongodb://localhost/shopping')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
+
+
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'hbs');

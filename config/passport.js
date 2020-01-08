@@ -1,28 +1,61 @@
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
-var User=require('../models/user')
+var bcrypt = require('bcrypt');
+var User = require('../models/user')
 
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
-   
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function (err, user) {
-      done(err, user);
-    });
+let getUserById=(id)=>{
+  User.findOne({ _id: id }, (err, user) => {
+    console.log("getUserById",err,user);
+     if (err) {
+       return false;
+     }else{
+       return true;
+     }
   })
+}
 
+function initialize() {
 
-  passport.use(new LocalStrategy(
-    function(email, password, done) {
-      User.findOne({ email: email }, function (err, user) {
+  const authenticateUser = (email, password, done) => {
+console.log("email password",email, password);
+    User.findOne({ email: email }, (err, user) => {
 
-        if (err) { return done(err); }
-        if (user) { return done(null, false,{message:'Email is already in use.'}); }
-        var newUser=new User();
-        newUser.email=email;
-        newUser.password=password;
+      if (err) {
+        return done(null, false, { message: 'No user with that email' })
+      }
+
+      bcrypt.compare(password, user.password, function (err, result) {
+        console.log("Password Test",user, err, result);
+        if (result) {
+          return done(null, user)
+        } else {
+          return done(null, false, { message: 'Password incorrect' })
+
+        }
       });
-    }
-  ));
+
+      // try {
+      //     if (await bcrypt.compare(password,user.password)) {
+      //         return done(null, user)
+
+      //     } else {
+      //         return done(null, false, {message:'Password incorrect'})
+
+      //     }
+      // } catch (e) {
+      //     return done(e)
+
+      // }
+
+    })
+
+  }
+  passport.use(new LocalStrategy({ usernameField: 'email' }, authenticateUser))
+  passport.serializeUser((user, done) => done(null, user._id))
+  passport.deserializeUser((id, done) =>  done(null, getUserById(id)))
+}
+
+
+
+module.exports = initialize
