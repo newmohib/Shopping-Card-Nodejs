@@ -9,6 +9,9 @@ var session = require('express-session')
 var passport = require('passport')
 var flash = require('connect-flash')
 
+const initialize=require('./config/passport');
+
+
 var indexRouter = require('./routes/index');
 
 var app = express();
@@ -25,6 +28,7 @@ mongoose.connect('mongodb://localhost/shopping')
 app.engine('.hbs',expressHbs({defaultLayout: 'layout',extname: 'hbs'}));
 app.set('view engine', '.hbs');
 
+initialize();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
