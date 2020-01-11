@@ -8,9 +8,8 @@ function initialize() {
   const authenticateUser = (email, password, done) => {
     User.findOne({ email: email })
     .then((user)=>{
-      console.log("success",user);
       bcrypt.compare(password, user.password, (err, result)=> {
-        console.log("Password Test", user, err, result);
+        console.log("Password Isvalid", result);
         if (result) {
           return done(null, user)
         } else {
