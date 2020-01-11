@@ -12,7 +12,7 @@ router.get('/profile', authenticate.isLoggedIn, (req, res) => {
     res.render('user/profile');
 })
 
-router.get('/logout',  (req, res) => {
+router.get('/logout', authenticate.isLoggedIn, (req, res) => {
     console.log("logout");
     req.logout();
     res.redirect('/');
