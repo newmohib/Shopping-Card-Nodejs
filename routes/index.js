@@ -33,39 +33,25 @@ router.get('/user/signup',(req,res)=>{
   res.render('user/signup');
 })
 
-// router.post('/user/signup', passport.authenticate('local' , {
-//   successRedirect :'/user/profile',
-//   failureRedirect:'/user/signup',
-//   failureFlash:true
-// }))
-
-
 router.post('/user/signup', (req,res)=>{
   console.log("submit success",req.body);
   let email=req.body.email;
   let password=req.body.password;
-  console.log("1",password,email);
   try {
-    console.log("2");
        bcrypt.hash(password ,10)
        .then(hashedPassword=>{
-       //  var newUser=new User();
-         console.log("3",email);
          User.findOne({ email: email }, function (err, user) {
           console.log("find user",err, user);
            if (err) { return done(err); }
            if (user) { return done(null, false,{message:'Email is already in use.'}); }
-           
            var newUser=new User();
            newUser.email=email;
            newUser.password=hashedPassword
            console.log("password",newUser.password);
            newUser.save((err)=>{
-             console.log("4",err);
              if (err) {
               res.redirect('/user/signup')
              }
-             console.log("5");
              res.redirect('/user/signin')
             });
          });
@@ -81,7 +67,7 @@ router.post('/user/signup', (req,res)=>{
 
 })
 
-router.get('/user/profile',(req,res)=>{
+router.get('/user/profile', checkAuthenticated,(req,res)=>{
   res.render('user/profile');
 })
 
@@ -96,11 +82,11 @@ router.post('/user/signin', passport.authenticate('local' , {
 }))
 
 
-// function checkAuthenticated(req,res,next){
-//   if (req.isAuthenticated()) {
-//       return next() 
-//   }
-//   res.redirect('/login')
-// }
+function checkAuthenticated(req,res,next){
+  if (req.isAuthenticated()) {
+      return next() 
+  }
+  res.redirect('/user/signin')
+}
 
 module.exports = router;
