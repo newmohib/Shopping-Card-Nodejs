@@ -49,7 +49,7 @@ app.use(passport.session());
 // this is use for global authentication
 app.use(function(req, res, next) {
   res.locals.login=req.isAuthenticated();
-  res.session=req.session;      //this is for memory session whene we store session data in database
+  res.locals.session=req.session;      //this is for memory session whene we store session data in database
   next();
 });
 

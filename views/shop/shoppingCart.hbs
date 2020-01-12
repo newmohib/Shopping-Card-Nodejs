@@ -1,0 +1,40 @@
+
+  {{#if products}}
+<div class="row  no-gutters  justify-content-md-center mt-5">
+    <div class="col-sm-10 col-md-6 ">
+        {{# each products}}
+
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="col-9">
+                    <span>{{this.item.title}}</span>
+                    <strong><span class="badge badge-success badge-pill">{{this.qty}}</span></strong>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Reduce by 1</a>
+                            <a class="dropdown-item" href="#">Remove All</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 offset-md-2">
+                    <span class="badge badge-primary badge-pill">{{this.price}}</span>
+                </div>
+            </li>
+        </ul>
+        {{/each}}
+
+    </div>
+</div>
+{{/if}}
+
+
+<hr>
+<div class="row  no-gutters  justify-content-md-center mt-5">
+    <div class="col-sm-4 col-md-2 ">
+        <button type="button" class="btn btn-primary">Checkout</button>
+    </div>
+</div>

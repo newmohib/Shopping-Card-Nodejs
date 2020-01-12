@@ -11,7 +11,10 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
         </ul>
-        <a class="nav-link" href="#"> <i class="fas fa-shopping-cart"></i> Shopping Cart</a>
+        <a class="nav-link" href="/shopping-cart"> 
+            <i class="fas fa-shopping-cart"></i> Shopping Cart
+            <span class="badge badge-primary">{{session.cart.totalQty}}</span>
+        </a>
         <div class="dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
