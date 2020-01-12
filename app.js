@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var session = require('express-session')
 var passport = require('passport')
 var flash = require('connect-flash')
-
+const MongoStore = require('connect-mongo')(session);
 const initialize=require('./config/passport');
 
 
@@ -38,7 +38,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  ttl:  60 * 60
 }));
 app.use(flash());
 app.use(passport.initialize());
@@ -47,6 +49,7 @@ app.use(passport.session());
 // this is use for global authentication
 app.use(function(req, res, next) {
   res.locals.login=req.isAuthenticated();
+  res.session=req.session;      //this is for memory session whene we store session data in database
   next();
 });
 
