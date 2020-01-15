@@ -42,11 +42,13 @@
 {{#if products}}
 <div class="table-responsive mt-5">
     <table class="table table-bordered">
-        <caption><div class="row  no-gutters  justify-content-md-center mt-5">
-    <div class="col-sm-4 col-md-2 ">
-        <button type="button" class="btn btn-primary">Checkout</button>
-    </div>
-</div></caption>
+        <caption>
+            <div>
+                <div class="col-sm-4 col-md-2 ">
+                    <a href="/checkout" class="btn btn-primary">Checkout</a>
+                </div>
+            </div>
+        </caption>
         <thead>
             <tr>
                 <th scope="col">Serial</th>
@@ -60,9 +62,9 @@
 
             {{# each products}}
             <tr>
-                <th scope="row">{{@index}}</th>
+                <th scope="row">{{this.serial}}</th>
                 <td colspan="2">{{this.item.title}}</td>
-                <td >{{this.qty}}</td>
+                <td>{{this.qty}}</td>
                 <td>
                     <div class="btn-group dropright">
                         <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown"
@@ -79,6 +81,10 @@
             </tr>
 
             {{/each}}
+            <tr>
+                <th scope="row" colspan="5">Total</th>
+                <th class="table-active" >{{this.totalPrice}}</th>
+            </tr>
         </tbody>
     </table>
 </div>

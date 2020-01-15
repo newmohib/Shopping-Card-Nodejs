@@ -42,8 +42,17 @@ router.get('/shopping-cart',(req, res)=>{
     return res.render('shop/shoppingCart',{products:null});
   }
   let oldCart=req.session.cart;
-  const cart=new Cart(oldCart);
-  return res.render('shop/shoppingCart',{products:cart.gererateArray,totalPrice:cart.totalPrice});
+  let cart=new Cart(oldCart);
+  return res.render('shop/shoppingCart',{products:cart.generateArray,totalPrice:cart.totalPrice});
+})
+
+router.get('/checkout',(req, res)=>{
+  if (!req.session.cart) {
+    return res.redirect('/shopping-cart');
+  }
+  let oldCart=req.session.cart;
+  let cart=new Cart(oldCart);
+  return res.render('shop/checkout',{total:cart.totalPrice});
 })
 
 module.exports = router;
